@@ -114,6 +114,10 @@
       object-fit: cover;
       object-position: center;
     }
+
+    .no-photo {
+      object-fit: contain;
+    }
   }
 
   .content {
