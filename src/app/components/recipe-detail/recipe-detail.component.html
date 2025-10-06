@@ -1,0 +1,39 @@
+@if (loading()) {
+<p class="container">Loading…</p>
+} @if (!loading() && recipe()) {
+<article class="detail container card-ui" style="padding: 16px">
+  <button class="btn go-back" [routerLink]="['/']">Go Back</button>
+  <header>
+    <h2>{{ recipe()!.title }}</h2>
+    <div class="actions">
+      <a class="btn" [routerLink]="['/recipes', recipe()!.id, 'edit']">Edit</a>
+      <button class="btn btn-danger" (click)="delete(recipe()!.id!)">Delete</button>
+      <button class="btn btn-primary" (click)="toggleFavorite(recipe()!)">
+        <img
+          class="add"
+          [src]="recipe()!.favorite ? 'icons/heart-yes.png' : 'icons/heart-no.png'"
+          [alt]="recipe()!.favorite ? 'heart-add-icon' : 'heart-not-add-icon'"
+        />
+        Favorite
+      </button>
+    </div>
+  </header>
+  @if (recipe()!.thumbnail) {<img
+    class="hero"
+    [src]="recipe()!.thumbnail"
+    [alt]="recipe()!.title"
+  />}
+  <h3>Description</h3>
+  <p class="description">{{ recipe()!.description }}</p>
+  @if (recipe()!.ingredients && recipe()!.ingredients.length > 0) {
+  <h3>Ingredients</h3>
+  <ul>
+    @for (ing of recipe()!.ingredients; track ing) {
+    <li>{{ ing }}</li>
+    }
+  </ul>
+  }
+  <h3>Instructions</h3>
+  <p class="instructions">{{ recipe()!.instructions }}</p>
+</article>
+}

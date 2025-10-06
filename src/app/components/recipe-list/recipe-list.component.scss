@@ -1,0 +1,262 @@
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-block: 16px;
+  justify-content: space-between;
+
+  input[type='text'],
+  form {
+    max-width: 360px;
+    min-width: 250px;
+  }
+
+  .search-image {
+    width: 18px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .favorite-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+
+    .favorite-check {
+      display: none;
+    }
+
+    .check-image {
+      width: 20px;
+      height: 20px;
+      background-image: url('/icons/heart-no.png');
+      background-size: cover;
+      background-position: center;
+      display: inline-block;
+    }
+
+    .favorite-check:checked + .check-image {
+      background-image: url('/icons/heart-yes.png');
+    }
+  }
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  position: relative;
+
+  .offline {
+    color: tomato;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-self: center;
+    position: absolute;
+    font-size: 25px;
+  }
+
+  .loading {
+    color: lightskyblue;
+  }
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  position: relative;
+
+  .description,
+  h3 {
+    max-width: 95%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .fav {
+    position: absolute;
+    right: 5px;
+    bottom: -2px;
+    cursor: pointer;
+
+    img {
+      width: 20px;
+    }
+  }
+
+  .thumb {
+    padding: 10px;
+    display: block;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+
+    img {
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .content {
+    padding: 12px 16px;
+
+    h3 {
+      margin: 0 0 4px;
+      font-weight: 600;
+
+      a {
+        color: #8343f1;
+        text-decoration: none;
+        transition: color 0.12s ease-in-out;
+
+        &:hover {
+          color: #a77af6;
+        }
+      }
+    }
+
+    p {
+      color: var(--muted);
+      margin: 0;
+    }
+  }
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.create {
+  text-decoration: none;
+  padding: 8px 13px;
+  border-radius: 10px;
+  transition: all 0.15s ease-in-out;
+
+  img {
+    width: 20px;
+  }
+}
+
+.favorite-toggle {
+  background-color: var(--primary);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease-in-out;
+}
+
+.search-form {
+  width: 50%;
+  display: flex;
+  gap: 3px;
+  height: 44px;
+  position: relative;
+
+  button {
+    background-color: #8343f1;
+    font-size: 16px;
+    padding: 13px;
+    position: absolute;
+    right: 0;
+    border: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding-right: 55px;
+  }
+}
+
+.no-recipes {
+  color: rgb(240, 175, 163);
+  font-size: 50px;
+  opacity: 0.8;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+
+  img {
+    width: 50px;
+  }
+}
+
+@media (max-width: 720px) {
+  .create,
+  .favorite-toggle {
+    .text {
+      display: none;
+    }
+  }
+
+  .favorite-toggle,
+  .create {
+    img {
+      width: 24px;
+    }
+  }
+}
+
+@media (max-width: 490px) {
+  .toolbar {
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    height: 130px;
+
+    .favorite-toggle,
+    .create {
+      position: absolute;
+      bottom: 15px;
+      font-size: 16px;
+      .text {
+        display: inline;
+      }
+    }
+
+    .create {
+      right: 35px;
+    }
+
+    .favorite-toggle {
+      left: 35px;
+    }
+
+    .search-form {
+      position: absolute;
+      top: 18px;
+    }
+  }
+
+  .search-form {
+    width: 100%;
+  }
+}

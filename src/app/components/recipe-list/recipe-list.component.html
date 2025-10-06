@@ -1,0 +1,61 @@
+<section class="toolbar container">
+  <label class="favorite-toggle btn">
+    <input
+      class="favorite-check"
+      type="checkbox"
+      [checked]="onlyFavorites()"
+      (change)="toggleFavorites()"
+    />
+    <span class="check-image"></span>
+    <span class="text"> Toggle Favorites </span>
+  </label>
+  <form class="search-form" (ngSubmit)="onSearch()">
+    <input
+      type="text"
+      placeholder="Search by title or ingredients"
+      [(ngModel)]="searchQuery"
+      name="search"
+    />
+    <button type="submit" class="btn">
+      <img class="search-image" src="icons/search.png" alt="search" />
+    </button>
+  </form>
+  <a class="create btn btn-primary" [routerLink]="['/recipes', 'new']">
+    <img src="icons/add-recipe.png" alt="add-recipe-icon" />
+    <span class="text"> New Recipe </span>
+  </a>
+</section>
+
+<section class="grid container">
+  @if (loading()) {
+  <span class="online loading offline">Loading...</span>
+  } @else if (error()) {
+  <span class="offline">Could Not Connect To The Server</span>
+  } @else { @for (recipe of recipes(); track recipe.id) {
+  <article class="card card-ui">
+    <a [routerLink]="['/recipes', recipe.id]" class="thumb">
+      @if (recipe.thumbnail) {
+      <img [src]="recipe.thumbnail" [alt]="recipe.title" />
+      } @else {
+      <img class="no-photo" src="images/dish.png" alt="no-photo-picture" />
+      }
+    </a>
+    <div class="content">
+      <h3>
+        <a [routerLink]="['/recipes', recipe.id]">{{ recipe.title }}</a>
+      </h3>
+      <p class="description">{{ recipe.description }}</p>
+    </div>
+    <div class="fav" (click)="toggleFavorite(recipe)">
+      <img
+        [src]="recipe!.favorite ? 'icons/heart-yes.png' : 'icons/heart-no.png'"
+        alt="favorite-icon"
+      />
+    </div>
+  </article>
+  } }
+</section>
+
+@if (!loading() && recipes().length === 0) {
+<span class="no-recipes">No recipes found! <img src="icons/hunger.png" alt="not-foun-icon" /> </span
+>}

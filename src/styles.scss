@@ -1,1 +1,126 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #0f172a;
+  --surface: #0b1225;
+  --card: #111a33;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --primary: #7c3aed;
+  --primary-600: #6d28d9;
+  --primary-700: #5b21b6;
+  --ring: rgba(124, 58, 237, 0.35);
+  --border: rgba(148, 163, 184, 0.14);
+  --shadow: 0 10px 25px rgba(2, 6, 23, 0.6), 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  background: linear-gradient(180deg, #0f172a);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card-ui {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: saturate(140%) blur(6px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8.8px 14.4px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(148, 163, 184, 0.32);
+  }
+
+  &-primary {
+    border-color: rgba(124, 58, 237, 0.5);
+    background: linear-gradient(180deg, var(--primary), var(--primary-600));
+    color: #fff;
+
+    &:hover {
+      box-shadow: 0 10px 22px rgba(124, 58, 237, 0.35);
+    }
+  }
+
+  &-danger {
+    border-color: rgba(239, 68, 68, 0.5);
+    background: linear-gradient(180deg, #ef4444, #dc2626);
+    color: #fff;
+  }
+}
+
+input[type='text'],
+input[type='search'],
+textarea,
+select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9.6px 12px;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+
+  &::placeholder {
+    color: var(--muted);
+  }
+
+  &:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.surface {
+  background: var(--surface);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+app-root > :where(router-outlet) + * {
+  display: block;
+}
+
+.page {
+  padding: 16px 0 32px;
+}
